@@ -5,7 +5,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
 <style>
 
     body,html{
@@ -83,6 +86,39 @@ position: absolute;
             width:100%;
         }
 
+        .month_show{
+            background: rgba(0,0,0,0.4);
+            width: calc(100% - 20px);
+            margin-left: 10px;
+            margin-top: 20px;
+            color: white;
+            height: calc(100% - 40px);
+            position: absolute;
+            display: none;
+        }
+
+        .back_button{
+            position: absolute;
+            left:3px;
+            font-size: 30px;
+            top:12px;
+        }
+
+                .forward_button{
+            position: absolute;
+            right:3px;
+            font-size: 30px;
+                    top:12px;
+        }
+
+                .month_show_title{
+                    position: absolute;
+                    top: 12px;
+                    width: 100%;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+
         @media only screen and (max-width: 768px) {
 
 
@@ -98,6 +134,115 @@ position: absolute;
     }
 }
 
+    .link_button{
+
+            position: absolute;
+    width: calc(100% - 40px);
+    left: 20px;
+    text-align: center;
+    bottom: 20px;
+    background: darkblue;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    }
+
+    .link_button{
+
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .date_div{
+        position: absolute;
+        left:20px;
+        top:75px
+    }
+    .date_divh{
+        position: absolute;
+        left:10px;
+        top: 50px;
+    }
+        .theme_div{
+            position: absolute;
+        left:20px;
+            top:125px;
+        }
+    .theme_divh{
+        position: absolute;
+        left:10px;
+        top: 100px;
+    }
+
+    .guests_div{
+        position: absolute;
+        height:calc(100% - 260px);
+    width: calc(100% - 40px);
+top: 175px;
+        left:20px;
+
+    }
+    .guests_divh{
+                position: absolute;
+        left:10px;
+        top: 150px;
+
+    }
+
+    .guest_div{
+        height: 50%;
+        width:50%;
+        float: left;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+
+    .Elaine{
+
+
+                 background-image: url("elaine.png");
+
+
+    }
+
+    .Al{
+
+                         background-image: url("al.png");
+
+    }
+
+    .Luke{
+        background-image: url("luke.png");
+    }
+
+    .Kelly{
+
+                background-image: url("kelly.png");
+
+    }
+
+    .TBA{
+
+                        background-image: url("TBA.png");
+
+
+    }
+
+    .Matthew{
+
+        background-image: url("matty.png")
+    }
+
+    .guest_name{
+        background: rgba(0,0,0,0.5);
+        text-align: center;
+        position: relative;
+        font-size: 14px;
+    }
+
 </style>
 </head>
 <body>
@@ -106,9 +251,170 @@ position: absolute;
     <div id="spotlight"></div>
 <div id="mic"></div>
 <div id="crowd"></div>
-    <div id="content"></div>
+    <div id="content">
+
+
+    </div>
 </div>
 
+<script>
 
+    function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+    function getObjectAttributeOrDefault(obj, attribute, defaultValue) {
+  return obj && obj.hasOwnProperty(attribute) ? obj[attribute] : defaultValue;
+}
+    function formatDate(date) {
+  const ordinalSuffix = ['th', 'st', 'nd', 'rd'];
+  const day = date.getDate();
+  const dayWithSuffix = day + (day % 10 === 1 && day !== 11 ? ordinalSuffix[1] : (day % 10 === 2 && day !== 12 ? ordinalSuffix[2] : (day % 10 === 3 && day !== 13 ? ordinalSuffix[3] : ordinalSuffix[0])));
+  const month = date.toLocaleString('en-US', { month: 'long' });
+
+  return `${date.toLocaleDateString('en-US', { weekday: 'long' })} ${dayWithSuffix} ${month}`;
+}
+
+    var shows = [
+  {
+    'show': 2,
+    'url': 'https://www.thestand.co.uk/performance/16789/nerds-just-wanna-have-fun/20240205/newcastle'
+  },
+  {
+    'show': 3,
+    'url': 'https://www.thestand.co.uk/performance/16790/nerds-just-wanna-have-fun/20240304/newcastle',
+    'theme': 'Geography',
+    'guests': [
+      'Al Stevenson',
+      'Elaine Robertson',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
+  },
+  {
+    'show': 4,
+    'url': 'https://www.thestand.co.uk/performance/16791/nerds-just-wanna-have-fun/20240401/newcastle'
+  },
+  {
+    'show': 5,
+    'url': 'https://www.thestand.co.uk/performance/16792/nerds-just-wanna-have-fun/20240506/newcastle'
+  },
+  {
+    'show': 6,
+    'url': 'https://www.thestand.co.uk/performance/16793/nerds-just-wanna-have-fun/20240604/newcastle'
+  },
+  {
+    'show': 7,
+    'url': 'https://www.thestand.co.uk/performance/16794/nerds-just-wanna-have-fun/20240701/newcastle'
+  },
+  {
+    'show': 8,
+    'url': 'https://www.thestand.co.uk/performance/16795/nerds-just-wanna-have-fun/20240805/newcastle'
+  },
+  {
+    'show': 9,
+    'url': 'https://www.thestand.co.uk/performance/16796/nerds-just-wanna-have-fun/20240902/newcastle'
+  },
+  {
+    'show': 10,
+    'url': 'https://www.thestand.co.uk/performance/16797/nerds-just-wanna-have-fun/20241007/newcastle'
+  },
+  {
+    'show': 11,
+    'url': 'https://www.thestand.co.uk/performance/16798/nerds-just-wanna-have-fun/20241104/newcastle'
+  },
+  {
+    'show': 12,
+    'url': 'https://www.thestand.co.uk/performance/16799/nerds-just-wanna-have-fun/20241202/newcastle'
+  },
+];
+
+var month_int = 0
+$.each(shows,function (i,show_info){
+const dateMatch = show_info.url.match(/\/(\d{4})(\d{2})(\d{2})\//);
+
+if (dateMatch) {
+    // Extract year, month, and day from the matched groups
+    const year = dateMatch[1];
+    const month = dateMatch[2];
+    const day = dateMatch[3];
+
+    // Create a Date object
+    const formattedDate = new Date(`${year}-${month}-${day}`);
+const currentDate = new Date();
+
+const formatted_show = formatDate(formattedDate);
+
+    window.console.log(formattedDate,Date())
+    if (formattedDate >= currentDate){
+
+        const monthString = formattedDate.toLocaleString('en-US', { month: 'long' });
+
+         const backButton = $('<div class="back_button">&lt;</div>').attr('month_int',month_int);
+  const monthTitle = $('<div class="month_show_title"></div>').text(monthString);
+  const forwardButton = $('<div class="forward_button">&gt;</div>').attr('month_int',month_int);
+    const dateDivH = $('<div  class="date_divh"></div>').text('Date:');
+
+  const dateDiv = $('<div  class="date_div"></div>').text(formatted_show);
+      const themeDivH = $('<div  class="theme_divh"></div>').text('Theme:')
+
+    const themeDiv = $('<div  class="theme_div"></div>').text(getObjectAttributeOrDefault(show_info,'theme','TBA'))
+              const guests_divH = $('<div  class="guests_divh"></div>').text('Guests:')
+
+guests_div = $('<div  class="guests_div"></div>').append(
+
+)
+        $.each(getObjectAttributeOrDefault(show_info,'guests',['Matthew Wheelwright',
+      'Luke Connell','TBA','Kelly Edgar']),function(i,guest){
+const wordsArray = guest.split(' ');
+
+            guests_div.append($('<div  class="guest_div"></div>').addClass(wordsArray[0]).append($('<div class="guest_name"></div>').text(guest)))
+
+            window.console.log(guest)
+        })
+
+  const linkButton = $('<a class="link_button">Buy Tickets </a>').attr('href',show_info.url).attr('target','_blank');
+
+  // Create a jQuery object for the container
+  const monthShowDiv = $('<div class="month_show"></div>').attr('month_int',month_int)
+    .append(backButton)
+    .append(monthTitle)
+    .append(forwardButton).append(linkButton).append(dateDivH).append(dateDiv).append(themeDivH).append(themeDiv).append(guests_divH).append(guests_div)
+  $('#content').append(monthShowDiv);
+
+month_int+=1
+    }
+
+}
+
+})
+
+    $('.month_show:first').show()
+
+    $('.forward_button').click(function (btn){
+cmonth_int = parseInt($(btn.currentTarget).attr('month_int'))
+        cmonth_int+=1
+        if ($('.month_show[month_int="'+cmonth_int+'"]').length > 0) {
+            $('.month_show').hide()
+            $('.month_show[month_int="' + cmonth_int + '"]').show()
+        }
+
+
+    })
+
+        $('.back_button').click(function (btn){
+cmonth_int = parseInt($(btn.currentTarget).attr('month_int'))
+        cmonth_int-=1
+        if ($('.month_show[month_int="'+cmonth_int+'"]').length > 0) {
+            $('.month_show').hide()
+            $('.month_show[month_int="' + cmonth_int + '"]').show()
+        }
+
+    })
+
+</script>
 </body>
 </html>
