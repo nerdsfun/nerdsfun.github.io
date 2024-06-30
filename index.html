@@ -218,6 +218,14 @@ top: 255px;
 
     }
 
+    .default{
+
+
+                 background-image: url("default.png");
+
+
+    }
+
     .Elaine{
 
 
@@ -351,23 +359,52 @@ top: 255px;
   },
   {
     'show': 6,
-    'url': 'https://www.thestand.co.uk/performance/16793/nerds-just-wanna-have-fun/20240604/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16793/nerds-just-wanna-have-fun/20240604/newcastle',
+
   },
   {
     'show': 7,
-    'url': 'https://www.thestand.co.uk/performance/16794/nerds-just-wanna-have-fun/20240701/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16794/nerds-just-wanna-have-fun/20240701/newcastle',
+       'theme': 'Psychology',
+    'guests': [
+      'Alex Redman',
+      'Elaine Robertson',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
   },
   {
     'show': 8,
-    'url': 'https://www.thestand.co.uk/performance/16795/nerds-just-wanna-have-fun/20240805/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16795/nerds-just-wanna-have-fun/20240805/newcastle',
+       'theme': '?',
+    'guests': [
+      'Jack & Sam',
+      'Kelly Edgar',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
   },
   {
     'show': 9,
-    'url': 'https://www.thestand.co.uk/performance/16796/nerds-just-wanna-have-fun/20240902/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16796/nerds-just-wanna-have-fun/20240902/newcastle',
+       'theme': 'Danger',
+    'guests': [
+      'Elaine Robertson',
+      'Kelly Edgar',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
   },
   {
     'show': 10,
-    'url': 'https://www.thestand.co.uk/performance/16797/nerds-just-wanna-have-fun/20241007/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16797/nerds-just-wanna-have-fun/20241007/newcastle',
+      'theme': '?',
+    'guests': [
+      'Kelly Rickard',
+      'Elaine Robertson',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
   },
   {
     'show': 11,
@@ -375,7 +412,14 @@ top: 255px;
   },
   {
     'show': 12,
-    'url': 'https://www.thestand.co.uk/performance/16799/nerds-just-wanna-have-fun/20241202/newcastle'
+    'url': 'https://www.thestand.co.uk/performance/16799/nerds-just-wanna-have-fun/20241202/newcastle',
+       'theme': '?',
+    'guests': [
+      'Lauren Stone',
+      'Elaine Robertson',
+      'Matthew Wheelwright',
+      'Luke Connell'
+    ]
   },
 ];
 
@@ -423,7 +467,7 @@ guests_div = $('<div  class="guests_div"></div>').append(
       'Luke Connell','TBA','Kelly Edgar']),function(i,guest){
 const wordsArray = guest.split(' ');
 
-            guests_div.append($('<div  class="guest_div"></div>').addClass(wordsArray[0]).append($('<div class="guest_name"></div>').text(guest)))
+            guests_div.append($('<div  class="guest_div"></div>').addClass('default').addClass(wordsArray[0]).append($('<div class="guest_name"></div>').text(guest)))
 
             window.console.log(guest)
         })
