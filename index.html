@@ -440,6 +440,8 @@ if (dateMatch) {
 
     // Create a Date object
     const formattedDate = new Date(`${year}-${month}-${day}`);
+    formattedDate.setHours(23, 59, 0, 0); // Set to 1 minute to midnight
+
 const currentDate = new Date();
 
 const formatted_show = formatDate(formattedDate);
